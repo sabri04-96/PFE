@@ -1,0 +1,30 @@
+
+version: '3.9'
+services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=sabri
+      - MYSQL_DATABASE=accesmanager
+    restart: always
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - 8090:80
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    depends_on:
+      - mysql
+    restart: always
+
+
+
+
+    
+    
