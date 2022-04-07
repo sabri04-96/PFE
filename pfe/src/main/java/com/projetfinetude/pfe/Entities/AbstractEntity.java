@@ -1,7 +1,6 @@
 package com.projetfinetude.pfe.Entities;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -15,24 +14,29 @@ import org.springframework.data.annotation.LastModifiedDate;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @SuppressWarnings("serial")
 @Data
 @MappedSuperclass
+@Getter
+@Setter
 public class AbstractEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(updatable = false,nullable = false)
 	private Integer id;
 
 	@CreatedDate
 	@Column(name = "creationDate", nullable = false)
 	@JsonIgnore
-	private Date creationDate;
+	private String creationDate;
 
 	@LastModifiedDate
 	@Column(name = "lastUpdateDate", nullable = false)
 	@JsonIgnore
-	private Date lastUpdatDate;
+	private String lastUpdatDate;
 
 }

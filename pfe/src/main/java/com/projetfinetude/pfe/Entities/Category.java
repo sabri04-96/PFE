@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -17,13 +16,25 @@ import lombok.Setter;
 @SuppressWarnings("serial")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "Category")
 public class Category extends AbstractEntity {
+
+	/**
+	 * @param name
+	 * @param description
+	 * @param services
+	 */
+	public Category(String name, String description, List<Service> services) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.services = services;
+	}
 
 	@Column
 	private String name;
