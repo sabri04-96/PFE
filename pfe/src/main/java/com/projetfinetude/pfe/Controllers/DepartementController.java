@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projetfinetude.pfe.Entities.Departement;
-import com.projetfinetude.pfe.Ripositories.DepartementRepository;
+import com.projetfinetude.pfe.Repositories.DepartementRepository;
 
 @RestController
 @RequestMapping("/accessmanager")

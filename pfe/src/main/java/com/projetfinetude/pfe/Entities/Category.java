@@ -24,6 +24,16 @@ import lombok.Setter;
 @Table(name = "Category")
 public class Category extends AbstractEntity {
 
+
+	@Column
+	private String name;
+
+	@Column
+	private String description;
+
+	@OneToMany(mappedBy = "category")
+	private List<Service> services;
+
 	/**
 	 * @param name
 	 * @param description
@@ -36,12 +46,4 @@ public class Category extends AbstractEntity {
 		this.services = services;
 	}
 
-	@Column
-	private String name;
-
-	@Column
-	private String description;
-
-	@OneToMany(mappedBy = "category")
-	private List<Service> services;
 }

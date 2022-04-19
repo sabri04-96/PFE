@@ -1,5 +1,5 @@
 
-package com.projetfinetude.pfe.Ripositories;
+package com.projetfinetude.pfe.Repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
