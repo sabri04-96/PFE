@@ -1,12 +1,11 @@
-package com.projetfinetude.pfe.Entities;
+package com.projetfinetude.pfe.model;
 
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -24,23 +23,24 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "Team")
-public class Team extends AbstractEntity {
+@Table(name = "Service")
+public class Service extends AbstractEntity {
 
 	@Column
 	private String name;
 
 	@Column
-	private String email;
-
-	@Column
 	private String description;
 
-	@OneToMany(mappedBy = "team")
-	private List<Person> persons;
+	@Column
+	private Date duration;
 
 	@ManyToOne
-	@JoinColumn(name = "departement")
-	private Departement departement;
+	@JoinColumn(name = "category")
+	private Category category;
+
+	@ManyToOne
+	@JoinColumn(name = "request")
+	private Request request;
 
 }

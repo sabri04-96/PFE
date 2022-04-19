@@ -1,4 +1,4 @@
-package com.projetfinetude.pfe.Entities.auth;
+package com.projetfinetude.pfe.model.auth;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.projetfinetude.pfe.Entities;
+package com.projetfinetude.pfe.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

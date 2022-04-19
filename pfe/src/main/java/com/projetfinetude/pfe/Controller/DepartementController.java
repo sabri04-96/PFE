@@ -1,4 +1,4 @@
-package com.projetfinetude.pfe.Controllers;
+package com.projetfinetude.pfe.Controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.projetfinetude.pfe.Entities.Departement;
-import com.projetfinetude.pfe.Repositories.DepartementRepository;
+import com.projetfinetude.pfe.Repository.DepartementRepository;
+import com.projetfinetude.pfe.model.Departement;
 
 @RestController
 @RequestMapping("/accessmanager")
