@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.security.RolesAllowed;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,17 +22,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projetfinetude.pfe.Repository.PersonRepository;
+import com.projetfinetude.pfe.constants.GlobalConstants;
 import com.projetfinetude.pfe.model.Person;
 
 @RestController
-@RequestMapping("/accessmanager")
+@RequestMapping(GlobalConstants.Globalpath)
 public class PersonController {
 
 	@Autowired
 	PersonRepository repo;
 
 	@GetMapping("/Persons")
-
+	@RolesAllowed("ADMIN_ROLE")
 	public ResponseEntity<List<Person>> getAllPersons() {
 		try {
 			List<Person> persons = new ArrayList<Person>();
@@ -56,15 +60,15 @@ public class PersonController {
 
 	@PostMapping("/Person")
 	public ResponseEntity<Person> createPerson(@RequestBody Person person) {
-		   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-		   LocalDateTime now = LocalDateTime.now();  
-		   System.out.println(dtf.format(now)); 
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		LocalDateTime now = LocalDateTime.now();
+		System.out.println(dtf.format(now));
 
-		   Person persontosave = new Person(person.getFirstName(), person.getLastName(), person.getEmail(),
-					person.getPhoneNumber(), person.getRegistrationNumber(), person.getCredentials(),
-					person.getRequests(), person.getTeam(), person.getRole());
-		   persontosave.setLastUpdatDate(dtf.format(now));
-		   persontosave.setCreationDate(dtf.format(now));
+		Person persontosave = new Person(person.getFirstName(), person.getLastName(), person.getEmail(),
+				person.getPhoneNumber(), person.getRegistrationNumber(), person.getCredentials(), person.getRequests(),
+				person.getTeam(), person.getRole());
+		persontosave.setLastUpdatDate(dtf.format(now));
+		persontosave.setCreationDate(dtf.format(now));
 		try {
 			Person _person = repo.save(persontosave);
 			return new ResponseEntity<>(_person, HttpStatus.CREATED);
@@ -77,9 +81,9 @@ public class PersonController {
 	public ResponseEntity<Person> updatePerson(@PathVariable("id") int id, @RequestBody Person personPassed) {
 		Optional<Person> personData = repo.findById(id);
 		if (personData.isPresent()) {
-			   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-			   LocalDateTime now = LocalDateTime.now();  
-			   System.out.println(dtf.format(now)); 
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+			LocalDateTime now = LocalDateTime.now();
+			System.out.println(dtf.format(now));
 			Person person = personData.get();
 			person.setFirstName(personPassed.getFirstName());
 			person.setEmail(personPassed.getEmail());

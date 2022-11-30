@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -39,8 +40,7 @@ public class Service extends AbstractEntity {
 	@JoinColumn(name = "category")
 	private Category category;
 
-	@ManyToOne
-	@JoinColumn(name = "request")
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Request request;
 
 }

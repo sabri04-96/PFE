@@ -44,7 +44,8 @@ public class Request extends AbstractEntity {
 	@JoinColumn(name = "person")
 	private Person person;
 
-	@OneToMany(mappedBy = "request")
+	@OneToMany
+	@JoinColumn(name = "request")
 	private List<Service> services;
 
 }
